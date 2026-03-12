@@ -21,6 +21,10 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Swagger/OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 // AI Client Configuration (Simulated or real if key exists)
 var openAiKey = Environment.GetEnvironmentVariable("OPEN_AI_API_KEY");
 var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
@@ -43,6 +47,14 @@ builder.Services.AddScoped<IChatService, NurseChatService>();
 var app = builder.Build();
 
 app.UseCors("AllowAll");
+
+// Enable Swagger in all environments for this demo
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "NurseBot API V1");
+    c.RoutePrefix = "swagger"; // Swagger UI at /swagger
+});
 
 // Endpoints
 app.MapGet("/", () => "NurseBot API Online");
