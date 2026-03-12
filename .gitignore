@@ -1,0 +1,17 @@
+[Aa]bin/
+[Oo]bj/
+build_result.txt
+build_result_2.txt
+build_errors.txt
+errors.txt
+errors_full.txt
+build_errors.txt
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+appsettings.Development.json
+out/
+bin/
+obj/
